@@ -1,10 +1,7 @@
 name: dashed_outline
 description: A Flutter package to easily add dashed borders around widgets.
-version: 0.0.1
-homepage: https://github.com/IrfanAbdulghaffar/dashed_outline  # Add your GitHub repo link
-repository: https://github.com/IrfanAbdulghaffar/dashed_outline
-issue_tracker: https://github.com/IrfanAbdulghaffar/dashed_outline/issues
-documentation: https://github.com/IrfanAbdulghaffar/dashed_outline/wiki
+version: 0.0.8
+homepage: https://github.com/IrfanAbdulghaffar/dashed_outline.git
 
 environment:
   sdk: ^3.6.1

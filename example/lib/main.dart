@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(title: Text("Dashed Outline Example")),
         body: Center(
           child: DashedOutline(
-            borderType: BorderType.RRect,
+            borderType: BorderType.rRect,
             radius: 12,
             dashPattern: [6, 3, 2, 3],
             child: Container(

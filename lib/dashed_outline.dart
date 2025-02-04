@@ -1,9 +1,7 @@
-library dashed_outline;
-
 import 'package:flutter/material.dart';
 import 'package:path_drawing/path_drawing.dart';
 
-enum BorderType { Rect, RRect, Circle, Oval }
+enum BorderType { rect, rRect, circle, oval }
 
 class DashedOutline extends StatelessWidget {
   final Widget child;
@@ -20,7 +18,7 @@ class DashedOutline extends StatelessWidget {
     this.strokeWidth = 1.0,
     this.radius = 0.0,
     this.dashPattern = const [5, 3],
-    this.borderType = BorderType.Rect,
+    this.borderType = BorderType.rect,
   });
 
   @override
@@ -61,22 +59,30 @@ class _DashedBorderPainter extends CustomPainter {
       ..strokeWidth = strokeWidth;
 
     Path path;
+    // Removed default case since all BorderType values are already covered
     switch (borderType) {
-      case BorderType.RRect:
-        path = Path()..addRRect(RRect.fromRectXY(Rect.fromLTWH(0, 0, size.width, size.height), radius, radius));
+      case BorderType.rRect:
+        path = Path()
+          ..addRRect(RRect.fromRectXY(
+              Rect.fromLTWH(0, 0, size.width, size.height), radius, radius));
         break;
-      case BorderType.Circle:
-        path = Path()..addOval(Rect.fromCircle(center: Offset(size.width / 2, size.height / 2), radius: size.width / 2));
+      case BorderType.circle:
+        path = Path()
+          ..addOval(Rect.fromCircle(
+              center: Offset(size.width / 2, size.height / 2),
+              radius: size.width / 2));
         break;
-      case BorderType.Oval:
+      case BorderType.oval:
         path = Path()..addOval(Rect.fromLTWH(0, 0, size.width, size.height));
         break;
-      case BorderType.Rect:
-      default:
+      case BorderType.rect:
         path = Path()..addRect(Rect.fromLTWH(0, 0, size.width, size.height));
+        break;
     }
 
-    canvas.drawPath(dashPath(path, dashArray: CircularIntervalList(dashPattern)), paint);
+    // Apply the dash pattern and draw the path
+    canvas.drawPath(
+        dashPath(path, dashArray: CircularIntervalList(dashPattern)), paint);
   }
 
   @override
